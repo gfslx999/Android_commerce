@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="5dp"
+    android:layout_centerHorizontal="true"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_home_recommend_rv"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="110dp"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:id="@+id/item_home_recommend_iv_title"
+        android:text="123123123123123"
+        android:textColor="#000"
+        android:textSize="14dp"
+        android:singleLine="true"
+        android:paddingTop="110dp"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:textSize="13dp"
+        android:paddingTop="132dp"
+        android:textColor="@color/colorPrice"
+        android:text="￥"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/item_home_recommend_tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="22dp"
+        android:paddingTop="130dp"
+        android:text="222"
+        android:textColor="@color/colorPrice"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/item_home_recommend_tv_old_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="55dp"
+        android:paddingTop="135dp"
+        android:text="￥209"
+        android:textColor="#ccc"
+        android:textSize="10dp" />
+
+    <Button
+        android:textSize="9dp"
+        android:background="@drawable/shape_btn_rush"
+        android:textColor="#fff"
+        android:text="快来抢购吧"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="155dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="90dp"
+        android:layout_height="20dp" />
+
+</androidx.cardview.widget.CardView>

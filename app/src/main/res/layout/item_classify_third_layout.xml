@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_classify_third_iv_photo"
+        android:src="@mipmap/ic_launcher"
+        android:padding="5dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
+    <LinearLayout
+        android:paddingLeft="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/item_classify_third_tv_title"
+            android:text="啦啦啦啦啦啦啦啦"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:paddingTop="8dp"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/item_classify_third_tv_shopName"
+            android:text="晓晓公主旗舰店"
+            android:paddingLeft="2dp"
+            android:paddingTop="8dp"
+            android:textSize="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:paddingTop="15dp"
+            android:paddingLeft="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/item_classify_third_tv_min_price"
+                android:text="剁手价:¥15.9"
+                android:textSize="14dp"
+                android:textColor="#F6226A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_classify_third_tv_normal_price"
+                android:text="原价:¥18.9"
+                android:textSize="11dp"
+                android:paddingLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

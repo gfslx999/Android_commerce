@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/shop_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_shop_car_tv_store_name"
+                android:text="花花公子旗舰店"
+                android:textColor="#000"
+                android:textSize="18dp"
+                android:paddingLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/item_shop_car_checked"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp" />
+
+        <TextView
+            android:id="@+id/item_shop_car_tv_product_name"
+            android:text="大黑裤子"
+            android:paddingTop="45dp"
+            android:singleLine="true"
+            android:paddingStart="156dp"
+            android:textColor="#191919"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="75dp"
+            android:paddingStart="156dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/xiang_le_quan" />
+
+            <TextView
+                android:id="@+id/item_shop_car_tv_product_serve"
+                android:layout_width="wrap_content"
+                android:paddingLeft="5dp"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:text="极速退款"
+                android:textColor="#EC250C"
+                android:textSize="11dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_shop_car_tv_product_price"
+            android:text="¥ 99.92"
+            android:textColor="#ff0000"
+            android:paddingTop="120dp"
+            android:paddingStart="158dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:paddingTop="310px"
+            android:paddingStart="870px"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/item_shop_car_iv_subtract"
+                android:src="@mipmap/shop_car_subtract"
+                android:layout_width="19dp"
+                android:layout_height="19dp" />
+            <TextView
+                android:id="@+id/item_shop_car_tv_product_num"
+                android:text="1"
+                android:textSize="16dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="#373737"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/item_shop_car_iv_add"
+                android:src="@mipmap/shop_car_add"
+                android:layout_width="19dp"
+                android:layout_height="19dp" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>
