@@ -26,7 +26,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:paddingLeft="10dp"
+        android:paddingLeft="7dp"
         android:textSize="13dp"
         android:paddingTop="132dp"
         android:textColor="@color/colorPrice"
@@ -38,7 +38,7 @@
         android:id="@+id/item_home_recommend_tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="22dp"
+        android:paddingLeft="18dp"
         android:paddingTop="130dp"
         android:text="222"
         android:textColor="@color/colorPrice"

@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="15dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/item_home_more_detail_iv"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10px"
+        app:cardCornerRadius="25px"
         android:layout_width="match_parent"
-        android:layout_height="180dp" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/item_home_more_detail_iv"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="550px" />
 
-    <TextView
-        android:id="@+id/item_home_more_detail_tv_title"
-        android:textSize="15dp"
-        android:textColor="#000"
-        android:layout_marginTop="190dp"
-        android:paddingLeft="5dp"
-        android:singleLine="true"
-        android:text="哈哈哈哈哈哈哈哈哈哈哈哈哈"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/item_home_more_detail_tv_title"
+            android:textSize="15dp"
+            android:textColor="#000"
+            android:layout_marginTop="190dp"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:text="哈哈哈哈哈哈哈哈哈哈哈哈哈"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/item_home_more_detail_tv_label"
-        android:layout_marginTop="217dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#FFF"
-        android:text="5元卷"
-        android:gravity="center"
-        android:background="@mipmap/label_juan"
-        android:layout_width="70dp"
-        android:layout_height="25dp" />
+        <TextView
+            android:id="@+id/item_home_more_detail_tv_label"
+            android:layout_marginTop="217dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#FFF"
+            android:text="5元卷"
+            android:gravity="center"
+            android:background="@mipmap/label_juan"
+            android:layout_width="70dp"
+            android:layout_height="25dp" />
 
-    <TextView
-        android:layout_marginTop="253dp"
-        android:text="券后 ￥"
-        android:textSize="12dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="5dp"
-        android:textColor="@color/colorPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="253dp"
+            android:text="券后￥"
+            android:textSize="35px"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25px"
+            android:textColor="@color/colorPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/item_home_more_detail_tv_price"
-        android:layout_marginTop="246dp"
-        android:text="11.9"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:paddingLeft="43dp"
-        android:textColor="@color/colorPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/item_home_more_detail_tv_price"
+            android:paddingTop="249dp"
+            android:text="11.9"
+            android:textSize="50px"
+            android:textStyle="bold"
+            android:paddingLeft="130px"
+            android:textColor="@color/colorPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/item_home_more_detail_tv_saleNum"
-        android:layout_marginTop="253dp"
-        android:text="已抢999999单"
-        android:textSize="12dp"
-        android:paddingLeft="91dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/item_home_more_detail_tv_saleNum"
+            android:layout_marginTop="253dp"
+            android:text="已抢999999单"
+            android:textSize="12dp"
+            android:paddingLeft="270px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </androidx.cardview.widget.CardView>
 
-</androidx.cardview.widget.CardView>
+</com.zhy.autolayout.AutoRelativeLayout>

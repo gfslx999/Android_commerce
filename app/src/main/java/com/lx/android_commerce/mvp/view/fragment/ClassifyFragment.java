@@ -1,10 +1,13 @@
 package com.lx.android_commerce.mvp.view.fragment;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lx.android_commerce.MyApp;
 import com.lx.android_commerce.R;
@@ -132,7 +135,11 @@ class ClassifyFragment extends BaseFragment<ClassifyPresenter> implements Classi
             }
         });
 
-        //TODO 三级菜单点击事件
+        //三级菜单点击事件,点击跳转详情页
+        mClassifyThirdAdapter.setOnItemClickListener((adapter, view, position) -> {
+
+        });
+
 
         fraClassifyThirdSmartRefresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
@@ -183,10 +190,8 @@ class ClassifyFragment extends BaseFragment<ClassifyPresenter> implements Classi
         }
 
         if (cacheKey != null && !cacheKey.isEmpty()) {
-            LogUtil.getInstance().LogI("缓存读取"+cacheKey);
             analysisFirstLevelData(cacheKey);
         } else if (!localDataKey.isEmpty()) {
-            LogUtil.getInstance().LogI("数据库读取");
             analysisFirstLevelData(localDataKey);
         } else mPresenter.requestFirstData(0);
     }
@@ -217,6 +222,10 @@ class ClassifyFragment extends BaseFragment<ClassifyPresenter> implements Classi
 
         secondGoodsList.addAll(entity);
         secondGoodsList.get(0).setChecked(true);
+
+        //滚到到顶部
+        fraClassifySecondRv.scrollToPosition(0);
+
         classifySecondAdapter.notifyDataSetChanged();
         //初始化三级菜单数据
         mThirdOptId = secondGoodsList.get(0).getOpt_id();

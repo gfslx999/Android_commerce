@@ -19,11 +19,11 @@ class LogUtil {
         return instance;
     }
 
-    public void LogI(Object msg) {
+    public void logI(Object msg) {
         Log.i("gfs", "LogI: "+msg);
     }
 
-    public void LogE(Object msg,int errorCode) {
+    public void logE(Object msg,int errorCode) {
         Log.e("gfs", "LogE: "+msg+"错误码:"+errorCode );
     }
 

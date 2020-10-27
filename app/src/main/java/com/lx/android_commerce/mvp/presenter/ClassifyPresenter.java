@@ -46,7 +46,7 @@ class ClassifyPresenter extends BasePresenter<ClassifyContract.Model,ClassifyCon
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.getInstance().LogE("三级列表"+e.getMessage(),0);
+                LogUtil.getInstance().logE("三级列表"+e.getMessage(),0);
             }
 
             @Override
@@ -70,7 +70,7 @@ class ClassifyPresenter extends BasePresenter<ClassifyContract.Model,ClassifyCon
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.getInstance().LogE("二级列表"+e.getMessage(),0);
+                LogUtil.getInstance().logE("二级列表"+e.getMessage(),0);
             }
 
             @Override
@@ -100,7 +100,7 @@ class ClassifyPresenter extends BasePresenter<ClassifyContract.Model,ClassifyCon
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.getInstance().LogE("一级列表"+e.getMessage(),0);
+                LogUtil.getInstance().logE("一级列表"+e.getMessage(),0);
             }
 
             @Override

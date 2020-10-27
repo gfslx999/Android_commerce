@@ -61,7 +61,7 @@ class MyApp extends Application {
         if(!isExist) {
             mDaoSession.getGreenCacheDao().insert(new GreenCache((long) id,value));
         } else {
-            LogUtil.getInstance().LogE("存入数据库失败,ID以存在",202);
+            LogUtil.getInstance().logE("存入数据库失败,ID以存在",202);
         }
     }
 

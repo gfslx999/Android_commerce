@@ -51,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             if((nowTime / 1000) - (lastTimeToEnter / 1000) > 10000) {
                 MyApp.getInstance().getDaoSession().getGreenCacheDao().deleteAll();
-                LogUtil.getInstance().LogI("清空了数据库");
+                LogUtil.getInstance().logI("清空了数据库");
             }
         }
 

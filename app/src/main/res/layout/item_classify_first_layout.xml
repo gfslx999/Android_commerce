@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="90dp"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220px"
     android:background="#FFF"
-    android:layout_height="45dp"
+    android:gravity="center"
+    android:layout_height="150px"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/item_classify_first_title"
         android:background="#FFF"
-        android:textSize="18dp"
+        android:textSize="43px"
         android:textColor="#000"
         android:text="裙子"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="32px"
+        android:paddingBottom="32px"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

@@ -80,8 +80,9 @@
         <TextView
             android:id="@+id/item_shop_car_tv_product_price"
             android:text="¥ 99.92"
+            android:textSize="45px"
             android:textColor="#ff0000"
-            android:paddingTop="120dp"
+            android:paddingTop="310px"
             android:paddingStart="158dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

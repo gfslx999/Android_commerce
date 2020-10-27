@@ -35,7 +35,7 @@ class HomeRecommendAdapter extends BaseQuickAdapter<HomeRecommendEntity.EntityBe
         //设置内容
         helper.setText(R.id.item_home_recommend_iv_title,item.getGoods_name()+"");
         helper.setText(R.id.item_home_recommend_tv_price,item.getAwardAmount() / 10.0+"");
-        helper.setText(R.id.item_home_recommend_tv_old_price,"原价¥"+item.getPlusAmount() / 10);
+        helper.setText(R.id.item_home_recommend_tv_old_price,"原价¥"+item.getPlusAmount() / 10.0);
 
         TextView textView = helper.getView(R.id.item_home_recommend_tv_old_price);
         textView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);

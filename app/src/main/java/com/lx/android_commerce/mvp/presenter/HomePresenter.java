@@ -45,7 +45,7 @@ class HomePresenter extends BasePresenter<HomeContract.Model,HomeContract.View> 
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.getInstance().LogE(e.getMessage(),0);
+                LogUtil.getInstance().logE(e.getMessage(),0);
             }
 
             @Override
@@ -70,7 +70,7 @@ class HomePresenter extends BasePresenter<HomeContract.Model,HomeContract.View> 
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.getInstance().LogE(e.getMessage(),0);
+                LogUtil.getInstance().logE(e.getMessage(),0);
             }
 
             @Override
@@ -104,7 +104,7 @@ class HomePresenter extends BasePresenter<HomeContract.Model,HomeContract.View> 
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.getInstance().LogE(e.getMessage(),0);
+                LogUtil.getInstance().logE(e.getMessage(),0);
             }
 
             @Override
