@@ -42,16 +42,15 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //定时清空数据库中的数据,让其每隔1小时刷新一次
+        //定时清空缓存数据库中的数据,让其每隔1小时刷新一次
         long lastTimeToEnter = SPUtils.getInstance("DarkSp").getLong("lastTimeToEnter");
         long nowTime = System.currentTimeMillis();
 
-        if(lastTimeToEnter < 0) {
+        if(lastTimeToEnter <= 0) {
             SPUtils.getInstance("DarkSp").put("lastTimeToEnter",nowTime);
         } else {
             if((nowTime / 1000) - (lastTimeToEnter / 1000) > 10000) {
                 MyApp.getInstance().getDaoSession().getGreenCacheDao().deleteAll();
-                LogUtil.getInstance().logI("清空了数据库");
             }
         }
 

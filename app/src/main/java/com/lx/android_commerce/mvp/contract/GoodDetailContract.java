@@ -22,7 +22,7 @@ interface GoodDetailContract {
     }
 
     interface Model extends IModel {
-        void requestDetailData(String threePosition, int goods_id, Observer<GoodDetailEntity> observer);
+        void requestDetailData(String threePosition, long goods_id, Observer<GoodDetailEntity> observer);
     }
 
 }

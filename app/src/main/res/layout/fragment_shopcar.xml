@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,19 +7,20 @@
     <RelativeLayout
         android:background="@color/colorStatusBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="150px">
         <TextView
-            android:textSize="23dp"
+            android:textSize="60px"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:paddingLeft="20dp"
+            android:paddingLeft="40px"
             android:text="购物车"
             android:textColor="#fff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:paddingRight="15dp"
-            android:textSize="16dp"
+            android:id="@+id/act_shop_car_set"
+            android:paddingRight="30px"
+            android:textSize="45px"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:text="管理"
@@ -28,4 +29,9 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="150px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

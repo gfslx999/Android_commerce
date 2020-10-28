@@ -1,5 +1,6 @@
 package com.lx.android_commerce.mvp.view.fragment;
 
+import android.content.Intent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.lx.android_commerce.di.component.DaggerClassifyComponent;
 import com.lx.android_commerce.di.modules.ClassifyModule;
 import com.lx.android_commerce.mvp.contract.ClassifyContract;
 import com.lx.android_commerce.mvp.presenter.ClassifyPresenter;
+import com.lx.android_commerce.mvp.view.activity.GoodDetailActivity;
 import com.lx.android_commerce.weight.CacheMemory;
 import com.lx.android_commerce.weight.DarkConstant;
 import com.lx.android_commerce.weight.adapter.ClassifyFirstAdapter;
@@ -137,7 +139,9 @@ class ClassifyFragment extends BaseFragment<ClassifyPresenter> implements Classi
 
         //三级菜单点击事件,点击跳转详情页
         mClassifyThirdAdapter.setOnItemClickListener((adapter, view, position) -> {
-
+            Intent intent = new Intent(getContext(), GoodDetailActivity.class);
+            intent.putExtra("detailGoodId",thirdGoodsList.get(position).getGoods_id());
+            startActivity(intent);
         });
 
 

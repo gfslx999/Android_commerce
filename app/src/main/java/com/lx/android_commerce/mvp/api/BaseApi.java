@@ -46,7 +46,7 @@ interface BaseApi {
     Observable<ClassifyThirdEntity> requestClassifyThirdData(@Query("page_size") int page_size,@Query("sort_type") int sort_type,@Query("opt_id") int opt_id);
 
     //商品详情页面
-    @GET("getGoodsDetailSingle")
-    Observable<GoodDetailEntity> requestGoodDetailData(@Query("threePosition")String threePosition,@Query("goods_id")int goods_id);
+    @GET("app/getGoodsDetailSingle")
+    Observable<GoodDetailEntity> requestGoodDetailData(@Query("threePosition")String threePosition,@Query("goods_id")long goods_id);
 
 }

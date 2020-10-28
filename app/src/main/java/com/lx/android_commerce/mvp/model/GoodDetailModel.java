@@ -26,7 +26,7 @@ class GoodDetailModel extends BaseModel implements GoodDetailContract.Model {
     public GoodDetailModel(){}
 
     @Override
-    public void requestDetailData(String threePosition, int goods_id, Observer<GoodDetailEntity> observer) {
+    public void requestDetailData(String threePosition, long goods_id, Observer<GoodDetailEntity> observer) {
         HttpRetrofitManager.getInstance().getRetrofit(BaseUrlApi.BASE_URL_COMMERCE)
                 .create(BaseApi.class)
                 .requestGoodDetailData(threePosition,goods_id)

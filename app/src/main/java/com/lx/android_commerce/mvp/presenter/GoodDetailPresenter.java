@@ -24,7 +24,7 @@ class GoodDetailPresenter extends BasePresenter<GoodDetailContract.Model,GoodDet
     @Inject
     public GoodDetailPresenter(){}
 
-    public void requestDetailData(String threePosition, int goods_id) {
+    public void requestDetailData(String threePosition, long goods_id) {
         mModel.requestDetailData(threePosition, goods_id, new Observer<GoodDetailEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -33,8 +33,10 @@ class GoodDetailPresenter extends BasePresenter<GoodDetailContract.Model,GoodDet
 
             @Override
             public void onNext(GoodDetailEntity goodDetailEntity) {
-                List<GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean> goods_details = goodDetailEntity.getEntity().getGoods_detail_response().getGoods_details();
-                mView.initDetailData(goods_details);
+                if(goodDetailEntity != null) {
+                    List<GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean> goods_details = goodDetailEntity.getEntity().getGoods_detail_response().getGoods_details();
+                    mView.initDetailData(goods_details);
+                }
             }
 
             @Override
