@@ -1,6 +1,7 @@
 package com.lx.android_commerce.mvp.contract;
 
 import com.lx.android_commerce.weight.entity.HomeCatEntity;
+import com.lx.android_commerce.weight.entity.HomeLoadMoreEntity;
 import com.lx.android_commerce.weight.entity.HomeNavigationEntity;
 import com.lx.android_commerce.weight.entity.HomeRecommendEntity;
 import com.lx.lib_core.mvp.model.IModel;
@@ -24,12 +25,14 @@ interface HomeContract {
         void initNavigation(List<List<HomeNavigationEntity.EntityBean>> list);
         void initRecommend(List<HomeRecommendEntity.EntityBean.GoodsSearchResponseBean.GoodsListBean> goodsBeanList);
         void initMore(List<HomeCatEntity.DataBean.ItemsBean.ListBean> itemsBeanList);
+        void initLoadMore(List<HomeLoadMoreEntity.EntityBean.GoodsSearchResponseBean.GoodsListBean> goodsListBeanList);
     }
 
     interface Model extends IModel {
         void requestHomeCatData(int start, boolean forceRefresh, Observer<HomeCatEntity> observer);
         void requestHomeNavigationData(Observer<HomeNavigationEntity> observer);
         void requestHomeRecommendData(String token, Observer<HomeRecommendEntity> observer);
+        void requestHomeLoadMoreData(int page, Observer<HomeLoadMoreEntity> observer);
     }
 
 }

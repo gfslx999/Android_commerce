@@ -7,11 +7,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lx.android_commerce.MyApp;
@@ -23,6 +23,7 @@ import com.lx.android_commerce.mvp.presenter.HomePresenter;
 import com.lx.android_commerce.ui.DetailActivity;
 import com.lx.android_commerce.weight.CacheMemory;
 import com.lx.android_commerce.weight.DarkConstant;
+import com.lx.android_commerce.weight.adapter.HomeLoadMoreAdapter;
 import com.lx.android_commerce.weight.adapter.HomeMoreAdapter;
 import com.lx.android_commerce.weight.adapter.HomeNavigationAdapter;
 import com.lx.android_commerce.weight.adapter.HomeRecommendAdapter;
@@ -31,10 +32,14 @@ import com.lx.android_commerce.weight.custom.DarkScrollView;
 import com.lx.android_commerce.weight.custom.DarkStaggeredGridLayoutManager;
 import com.lx.android_commerce.weight.entity.GreenCache;
 import com.lx.android_commerce.weight.entity.HomeCatEntity;
+import com.lx.android_commerce.weight.entity.HomeLoadMoreEntity;
 import com.lx.android_commerce.weight.entity.HomeNavigationEntity;
 import com.lx.android_commerce.weight.entity.HomeRecommendEntity;
 import com.lx.lib_core.mvp.view.BaseFragment;
 import com.lx.lib_core.weight.utils.GlideUtil;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -68,6 +73,8 @@ class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.V
     RecyclerView fraHomeRvMore;
     @BindView(R.id.fra_home_ll_more)
     LinearLayout fraHomeLlMore;
+    @BindView(R.id.fra_home_smartRefresh)
+    SmartRefreshLayout fraHomeSmartRefresh;
 
     private HomeNavigationAdapter mHomeNavigationAdapter;
     private List<HomeNavigationEntity.EntityBean> entityBeans = new ArrayList<>();
@@ -77,6 +84,10 @@ class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.V
 
     private HomeMoreAdapter mHomeMoreAdapter;
     private List<HomeCatEntity.DataBean.ItemsBean.ListBean> itemsBeanList = new ArrayList<>();
+
+    private HomeLoadMoreAdapter mHomeLoadMoreAdapter;
+    private List<HomeLoadMoreEntity.EntityBean.GoodsSearchResponseBean.GoodsListBean> mHomeLoadMoreList = new ArrayList<>();
+    private int mLoadMorePage = 1;
 
     @Override
     public int bindLayout() {
@@ -107,16 +118,22 @@ class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.V
         fraHomeRvMore.setLayoutManager(darkStaggeredGridLayoutManager);
         mHomeMoreAdapter = new HomeMoreAdapter(itemsBeanList);
         fraHomeRvMore.setAdapter(mHomeMoreAdapter);
+        mHomeLoadMoreAdapter = new HomeLoadMoreAdapter(R.layout.item_home_more_detail_layout,mHomeLoadMoreList);
 
         //点击跳转详情页
-        mHomeMoreAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        if(fraHomeRvMore.getAdapter() == mHomeMoreAdapter) {
+            mHomeMoreAdapter.setOnItemClickListener((adapter, view, position) -> {
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra(DarkConstant.HOME_MORE_LIST_DETAIL_URL,itemsBeanList.get(position).getUrl());
+                intent.putExtra(DarkConstant.HOME_MORE_LIST_DETAIL_URL, itemsBeanList.get(position).getUrl());
                 startActivity(intent);
-            }
-        });
+            });
+        } else {
+            mHomeLoadMoreAdapter.setOnItemClickListener((adapter, view, position) -> {
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(DarkConstant.HOME_MORE_LIST_DETAIL_URL, mHomeLoadMoreList.get(position).getCoupon_url());
+                startActivity(intent);
+            });
+        }
 
         initInject();
         initData();
@@ -130,11 +147,11 @@ class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.V
         String homeCatCacheKey = CacheMemory.getInstance().getCache("homeCatCacheKey");
         GreenCache load = MyApp.getInstance().getDaoSession().getGreenCacheDao().load((long) DarkConstant.GREEN_HOME_CAT_ID);
         String localCatData = "";
-        if(load != null) {
+        if (load != null) {
             localCatData = load.getValue();
         }
 
-        if(!homeCatCacheKey.equals("")) {
+        if (!homeCatCacheKey.equals("")) {
             analysisLocalHomeCatData(homeCatCacheKey);
         } else if (!localCatData.equals("")) {
             analysisLocalHomeCatData(localCatData);
@@ -170,7 +187,6 @@ class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.V
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
                 GlideUtil.getInstance().showImg(getActivity(), (String) path, imageView);
-//                GlideUtil.getInstance().showCornerImg(getActivity(), (String) path, imageView, 15);
             }
         });
         //开始播放
@@ -198,6 +214,16 @@ class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.V
         itemsBeanList.addAll(list);
 
         mHomeMoreAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void initLoadMore(List<HomeLoadMoreEntity.EntityBean.GoodsSearchResponseBean.GoodsListBean> goodsListBeanList) {
+        if(fraHomeRvMore.getAdapter() != mHomeLoadMoreAdapter) {
+            fraHomeRvMore.setAdapter(mHomeLoadMoreAdapter);
+        }
+        fraHomeSmartRefresh.finishLoadMore();
+        mHomeLoadMoreList.addAll(goodsListBeanList);
+        mHomeLoadMoreAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.fra_home_iv_message)

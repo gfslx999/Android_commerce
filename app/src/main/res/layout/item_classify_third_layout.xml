@@ -63,6 +63,7 @@
                 android:id="@+id/item_classify_third_tv_normal_price"
                 android:text="原价:¥18.9"
                 android:textSize="30px"
+                android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

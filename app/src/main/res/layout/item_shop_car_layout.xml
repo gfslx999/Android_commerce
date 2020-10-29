@@ -1,120 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_marginLeft="15px"
+    android:layout_marginRight="15px"
+    android:layout_marginTop="15px"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    app:cardCornerRadius="15dp">
 
-    <androidx.cardview.widget.CardView
-        app:cardCornerRadius="10dp"
+    <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:paddingTop="5dp"
-            android:paddingLeft="15dp"
-            android:gravity="center_vertical"
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp">
             <ImageView
-                android:src="@mipmap/shop_store"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:src="@mipmap/shop_store" />
             <TextView
                 android:id="@+id/item_shop_car_tv_store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
                 android:text="花花公子旗舰店"
                 android:textColor="#000"
-                android:textSize="18dp"
-                android:paddingLeft="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:textSize="45px" />
+        </com.zhy.autolayout.AutoLinearLayout>
 
         <CheckBox
             android:id="@+id/item_shop_car_checked"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="75dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="70dp" />
 
         <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="56dp"
-            android:layout_marginBottom="10dp"
+            android:id="@+id/item_shop_car_iv_photo"
             android:layout_width="95dp"
-            android:layout_height="95dp" />
+            android:layout_height="95dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/item_shop_car_tv_product_name"
-            android:text="大黑裤子"
-            android:paddingTop="45dp"
-            android:singleLine="true"
-            android:paddingStart="156dp"
-            android:textColor="#191919"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="75dp"
             android:paddingStart="156dp"
-            android:gravity="center_vertical">
+            android:paddingTop="40dp"
+            android:singleLine="true"
+            android:text="大黑裤子"
+            android:textColor="#191919" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingStart="156dp"
+            android:paddingTop="70dp">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:id="@+id/item_shop_car_iv_xiang"
+                android:layout_width="70px"
+                android:layout_height="70px"
                 android:src="@mipmap/xiang_le_quan" />
 
             <TextView
                 android:id="@+id/item_shop_car_tv_product_serve"
                 android:layout_width="wrap_content"
-                android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
+                android:paddingLeft="5dp"
                 android:text="极速退款"
                 android:textColor="#EC250C"
-                android:textSize="11dp" />
-        </LinearLayout>
+                android:textSize="35px" />
+        </com.zhy.autolayout.AutoLinearLayout>
 
         <TextView
             android:id="@+id/item_shop_car_tv_product_price"
-            android:text="¥ 99.92"
-            android:textSize="45px"
-            android:textColor="#ff0000"
-            android:paddingTop="310px"
-            android:paddingStart="158dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingStart="158dp"
+            android:paddingTop="110dp"
+            android:text="¥ 99.92"
+            android:textColor="#ff0000"
+            android:textSize="45px" />
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:paddingTop="310px"
-            android:paddingStart="870px"
-            android:gravity="center_vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingStart="810px"
+            android:paddingTop="110dp">
+
             <ImageView
                 android:id="@+id/item_shop_car_iv_subtract"
-                android:src="@mipmap/shop_car_subtract"
-                android:layout_width="19dp"
-                android:layout_height="19dp" />
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:src="@mipmap/shop_car_subtract" />
+
             <TextView
                 android:id="@+id/item_shop_car_tv_product_num"
-                android:text="1"
-                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:text="1"
                 android:textColor="#373737"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="45px" />
+
             <ImageView
                 android:id="@+id/item_shop_car_iv_add"
-                android:src="@mipmap/shop_car_add"
-                android:layout_width="19dp"
-                android:layout_height="19dp" />
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:src="@mipmap/shop_car_add" />
         </com.zhy.autolayout.AutoLinearLayout>
-    </androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/item_shop_car_iv_remove"
+            android:visibility="gone"
+            android:layout_margin="15px"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/shop_car_remove"
+            android:layout_width="100px"
+            android:layout_height="100px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
 
-
-
-</com.zhy.autolayout.AutoLinearLayout>
+</androidx.cardview.widget.CardView>

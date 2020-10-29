@@ -6,6 +6,7 @@ import com.lx.android_commerce.mvp.contract.HomeContract;
 import com.lx.android_commerce.weight.CacheMemory;
 import com.lx.android_commerce.weight.DarkConstant;
 import com.lx.android_commerce.weight.entity.HomeCatEntity;
+import com.lx.android_commerce.weight.entity.HomeLoadMoreEntity;
 import com.lx.android_commerce.weight.entity.HomeNavigationEntity;
 import com.lx.android_commerce.weight.entity.HomeRecommendEntity;
 import com.lx.lib_core.mvp.presenter.BasePresenter;
@@ -30,6 +31,31 @@ class HomePresenter extends BasePresenter<HomeContract.Model,HomeContract.View> 
 
     @Inject
     public HomePresenter(){}
+
+    public void requestHomeLoadMoreData(int page) {
+        mModel.requestHomeLoadMoreData(page, new Observer<HomeLoadMoreEntity>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(HomeLoadMoreEntity homeLoadMoreEntity) {
+                List<HomeLoadMoreEntity.EntityBean.GoodsSearchResponseBean.GoodsListBean> goods_list = homeLoadMoreEntity.getEntity().getGoods_search_response().getGoods_list();
+                if(goods_list.size() > 0) mView.initLoadMore(goods_list); else LogUtil.getInstance().logI("拉到底啦");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtil.getInstance().logE("首页加载更多"+e.getMessage(),101);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
 
     public void requestHomeRecommendData(String token) {
         mModel.requestHomeRecommendData(token, new Observer<HomeRecommendEntity>() {

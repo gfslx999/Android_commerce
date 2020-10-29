@@ -69,7 +69,9 @@
             android:layout_alignParentRight="true"
             android:paddingRight="30px"
             android:paddingTop="45px"
+            android:maxLength="11"
             android:text="旗舰店"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </com.zhy.autolayout.AutoRelativeLayout>

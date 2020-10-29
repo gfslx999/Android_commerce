@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.GsonUtils;
 import com.google.gson.Gson;
 import com.lx.android_commerce.MyApp;
 import com.lx.android_commerce.R;
@@ -22,11 +23,12 @@ import com.lx.android_commerce.weight.entity.GoodDetailEntity;
 import com.lx.android_commerce.weight.entity.GreenShop;
 import com.lx.lib_core.mvp.view.BaseActivity;
 import com.lx.lib_core.weight.utils.GlideUtil;
-import com.lx.lib_core.weight.utils.LogUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +123,7 @@ public class GoodDetailActivity extends BaseActivity<GoodDetailPresenter> implem
                 GlideUtil.getInstance().showImg(context, (String) path,imageView);
             }
         });
+
         actGoodDetailBanner.setBannerStyle(BannerConfig.NUM_INDICATOR);
         actGoodDetailBanner.isAutoPlay(false);
         actGoodDetailBanner.start();
@@ -143,21 +146,41 @@ public class GoodDetailActivity extends BaseActivity<GoodDetailPresenter> implem
                 showToast("由于李晓太懒,该功能暂未开发");
                 break;
             case R.id.act_good_detail_btn_shop_car:
-                //将该商品详情存储进数据库
-                countShopCarNum();
-                String json = new Gson().toJson(goodsDetailsBeanList.get(0));
-                long insert = MyApp.getInstance().getDaoSession().getGreenShopDao().insert(new GreenShop(null, json));
-                LogUtil.getInstance().logI("数据库存储结果"+insert);
+                //将该商品信息存储进数据库
+                insertLocalData();
                 break;
             case R.id.act_good_detail_btn_buy:
                 break;
         }
     }
 
-    private void countShopCarNum() {
+    private void insertLocalData() {
         List<GreenShop> greenShops = MyApp.getInstance().getDaoSession().getGreenShopDao().loadAll();
+
+        boolean flag = false;
         for (GreenShop greenShop : greenShops) {
             String shop = greenShop.getShop();
+            GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean = new Gson().fromJson(shop, GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean.class);
+            //判断数据库中是否有相同的商品
+            if(goodsDetailsBean.getGoods_name().equals(mGoodsName)) {
+                //获取该商品在购物车中的数量,+1
+                int shopCarNum = goodsDetailsBean.getShopCarNum();
+                goodsDetailsBean.setShopCarNum(++shopCarNum);
+                MyApp.getInstance().getDaoSession().getGreenShopDao().update(new GreenShop(greenShop.getId(),new Gson().toJson(goodsDetailsBean)));
+
+                flag = true;
+                //通知购物车页面,刷新数据
+                EventBus.getDefault().post("It's time to refresh");
+                showToast("加入购物车成功");
+                break;
+            }
+        }
+        //数据库中不存在该商品,直接插入
+        if(!flag && goodsDetailsBeanList.size() > 0) {
+            String json = new Gson().toJson(goodsDetailsBeanList.get(0));
+            MyApp.getInstance().getDaoSession().getGreenShopDao().insert(new GreenShop(null, json));
+            EventBus.getDefault().post("It's time to refresh");
+            showToast("加入购物车成功");
         }
     }
 }

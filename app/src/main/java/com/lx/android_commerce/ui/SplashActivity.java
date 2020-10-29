@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
             super.handleMessage(msg);
             if(msg.what == 101) {
                 index++;
-                if(index == 3) {
+                if(index == 2) {
                     startActivity(new Intent(SplashActivity.this,MainActivity.class));
                     timer.cancel();
                     finish();

@@ -25,7 +25,7 @@ class GlideUtil {
     }
 
     public void showImg(Context context, String url, ImageView imageView) {
-        Glide.with(context).load(url).error(R.drawable.error).placeholder(R.drawable.place_holder).into(imageView);
+        Glide.with(context).load(url).error(R.drawable.error).placeholder(R.drawable.loading_grey).into(imageView);
     }
 
     public void showCircleImg(Context context, String url, ImageView imageView) {
@@ -36,7 +36,7 @@ class GlideUtil {
         RoundedCorners roundedCorners = new RoundedCorners(radius);
         RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCorners);
 
-        Glide.with(context).load(url).apply(requestOptions).error(R.drawable.error).placeholder(R.drawable.place_holder).into(imageView);
+        Glide.with(context).load(url).apply(requestOptions).error(R.drawable.error).placeholder(R.drawable.loading_grey).into(imageView);
     }
 
 }

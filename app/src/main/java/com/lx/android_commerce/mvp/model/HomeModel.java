@@ -3,6 +3,7 @@ package com.lx.android_commerce.mvp.model;
 import com.lx.android_commerce.mvp.api.BaseApi;
 import com.lx.android_commerce.mvp.contract.HomeContract;
 import com.lx.android_commerce.weight.entity.HomeCatEntity;
+import com.lx.android_commerce.weight.entity.HomeLoadMoreEntity;
 import com.lx.android_commerce.weight.entity.HomeNavigationEntity;
 import com.lx.android_commerce.weight.entity.HomeRecommendEntity;
 import com.lx.lib_core.mvp.model.BaseModel;
@@ -52,6 +53,16 @@ class HomeModel extends BaseModel implements HomeContract.Model {
         HttpRetrofitManager.getInstance().getRetrofit(BaseUrlApi.BASE_URL_COMMERCE)
                 .create(BaseApi.class)
                 .requestHomeRecommendData(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    @Override
+    public void requestHomeLoadMoreData(int page, Observer<HomeLoadMoreEntity> observer) {
+        HttpRetrofitManager.getInstance().getRetrofit(BaseUrlApi.BASE_URL_COMMERCE)
+                .create(BaseApi.class)
+                .requestHomeLoadMoreData(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

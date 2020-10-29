@@ -57,7 +57,6 @@ class MyApp extends Application {
                 isExist = true;
             }
         }
-
         if(!isExist) {
             mDaoSession.getGreenCacheDao().insert(new GreenCache((long) id,value));
         } else {

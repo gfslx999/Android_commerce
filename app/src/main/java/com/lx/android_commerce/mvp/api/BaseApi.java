@@ -5,6 +5,7 @@ import com.lx.android_commerce.weight.entity.ClassifySecondEntity;
 import com.lx.android_commerce.weight.entity.ClassifyThirdEntity;
 import com.lx.android_commerce.weight.entity.GoodDetailEntity;
 import com.lx.android_commerce.weight.entity.HomeCatEntity;
+import com.lx.android_commerce.weight.entity.HomeLoadMoreEntity;
 import com.lx.android_commerce.weight.entity.HomeNavigationEntity;
 import com.lx.android_commerce.weight.entity.HomeRecommendEntity;
 
@@ -32,6 +33,10 @@ interface BaseApi {
     //首页推荐
     @GET("app/tk/v2/getChaoJiBaoKuan")
     Observable<HomeRecommendEntity> requestHomeRecommendData(@Query("token") String token);
+
+    //首页加载更多
+    @GET("app/tk/taobao/getGoodsHomePagSearch?device_type=ANDROID&opt_id=-99&token=")
+    Observable<HomeLoadMoreEntity> requestHomeLoadMoreData(@Query("page")int page);
 
     //分类页面一级列表
     @GET("app/tk/v2/getGoodsOpt")

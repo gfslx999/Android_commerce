@@ -2,6 +2,7 @@
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F2F2"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -18,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/act_shop_car_set"
+            android:id="@+id/fra_shop_car_set"
             android:paddingRight="30px"
             android:textSize="45px"
             android:layout_centerVertical="true"
@@ -30,8 +31,73 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fra_shop_car_rv"
         android:layout_marginTop="150px"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/fra_shop_car_tv_loading"
+        android:gravity="center"
+        android:textSize="50px"
+        android:visibility="gone"
+        android:text="小车中还没有商品哦,赶快去Shopping吧"
+        android:layout_marginTop="150px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/fra_shop_car_bottom_rl"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="150px">
+        <View
+            android:layout_marginBottom="145px"
+            android:layout_alignParentBottom="true"
+            android:background="#ccc"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <CheckBox
+            android:id="@+id/fra_shop_car_check_all"
+            android:layout_marginLeft="30px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/fra_shop_car_tv_all"
+            android:layout_marginLeft="120px"
+            android:layout_centerVertical="true"
+            android:text="全选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.zhy.autolayout.AutoLinearLayout
+            android:paddingRight="20px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="合计:"
+                android:paddingRight="10px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/fra_shop_tv_allMoney"
+                android:paddingRight="40px"
+                android:textColor="@color/colorPrice"
+                android:textSize="45px"
+                android:text="¥0.0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textColor="#fff"
+                android:text="结算"
+                android:layout_width="250px"
+                android:background="@drawable/shape_shop_car_btn_clear"
+                android:layout_height="95px"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
 
 </com.zhy.autolayout.AutoRelativeLayout>

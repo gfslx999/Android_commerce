@@ -140,7 +140,34 @@ class GoodDetailEntity {
                  * mall_cps : 1
                  */
 
-                private int shopCarNum;
+                private int shopCarNum = 1;
+                private long greenProductId = 0;
+                private boolean isChecked = false;
+                private boolean isShowRemove = false;
+
+                public boolean isShowRemove() {
+                    return isShowRemove;
+                }
+
+                public void setShowRemove(boolean showRemove) {
+                    isShowRemove = showRemove;
+                }
+
+                public long getGreenProductId() {
+                    return greenProductId;
+                }
+
+                public void setGreenProductId(long greenProductId) {
+                    this.greenProductId = greenProductId;
+                }
+
+                public boolean isChecked() {
+                    return isChecked;
+                }
+
+                public void setChecked(boolean checked) {
+                    isChecked = checked;
+                }
 
                 public int getShopCarNum() {
                     return shopCarNum;
