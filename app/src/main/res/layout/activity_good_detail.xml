@@ -36,7 +36,7 @@
                 android:layout_width="85px"
                 android:layout_height="85px" />
             <TextView
-                android:text="¥"
+                android:text="¥ "
                 android:paddingLeft="20px"
                 android:textSize="49px"
                 android:textColor="#FF0000"
@@ -45,14 +45,12 @@
             <TextView
                 android:id="@+id/act_good_detail_tv_min_price"
                 android:text="98.67"
-                android:paddingLeft="5px"
                 android:textSize="50px"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:text="— "
-                android:paddingLeft="20px"
+                android:text="—"
                 android:textSize="49px"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"
@@ -60,7 +58,6 @@
             <TextView
                 android:id="@+id/act_good_detail_tv_normal_price"
                 android:text="111.67"
-                android:paddingLeft="5px"
                 android:textSize="50px"
                 android:textColor="#FF0000"
                 android:layout_width="wrap_content"

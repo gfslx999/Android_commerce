@@ -12,10 +12,8 @@
         android:textSize="43px"
         android:textColor="#000"
         android:text="裙子"
-        android:paddingTop="32px"
-        android:paddingBottom="32px"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 </com.zhy.autolayout.AutoLinearLayout>

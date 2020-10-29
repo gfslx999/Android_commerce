@@ -61,6 +61,7 @@ public class GoodDetailActivity extends BaseActivity<GoodDetailPresenter> implem
     Button actGoodDetailBtnBuy;
 
     private long mGoodsId = 0;
+    private String mGoodsName;
 
     private List<GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean> goodsDetailsBeanList = new ArrayList<>();
 
@@ -108,8 +109,8 @@ public class GoodDetailActivity extends BaseActivity<GoodDetailPresenter> implem
         actGoodDetailTvShopName.setText("店铺:"+mallName);
 
         //商品名称
-        String goodsName = goods_details.get(0).getGoods_name();
-        actGoodDetailTvProductName.setText(""+goodsName);
+        mGoodsName = goods_details.get(0).getGoods_name();
+        actGoodDetailTvProductName.setText(""+mGoodsName);
     }
 
     private void initBanner(List<String> imageList) {
@@ -143,12 +144,20 @@ public class GoodDetailActivity extends BaseActivity<GoodDetailPresenter> implem
                 break;
             case R.id.act_good_detail_btn_shop_car:
                 //将该商品详情存储进数据库
+                countShopCarNum();
                 String json = new Gson().toJson(goodsDetailsBeanList.get(0));
                 long insert = MyApp.getInstance().getDaoSession().getGreenShopDao().insert(new GreenShop(null, json));
                 LogUtil.getInstance().logI("数据库存储结果"+insert);
                 break;
             case R.id.act_good_detail_btn_buy:
                 break;
+        }
+    }
+
+    private void countShopCarNum() {
+        List<GreenShop> greenShops = MyApp.getInstance().getDaoSession().getGreenShopDao().loadAll();
+        for (GreenShop greenShop : greenShops) {
+            String shop = greenShop.getShop();
         }
     }
 }

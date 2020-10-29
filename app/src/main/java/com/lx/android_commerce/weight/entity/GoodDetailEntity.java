@@ -140,6 +140,16 @@ class GoodDetailEntity {
                  * mall_cps : 1
                  */
 
+                private int shopCarNum;
+
+                public int getShopCarNum() {
+                    return shopCarNum;
+                }
+
+                public void setShopCarNum(int shopCarNum) {
+                    this.shopCarNum = shopCarNum;
+                }
+
                 private String category_name;
                 private int clt_cpn_end_time;
                 private int clt_cpn_min_amt;

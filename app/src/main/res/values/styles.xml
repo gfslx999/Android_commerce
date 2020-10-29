@@ -8,7 +8,9 @@
     </style>
 
     <style name="SplashPage" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/heike_splash</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item><!--显示虚拟按键，并腾出空间-->
     </style>
 
 </resources>
