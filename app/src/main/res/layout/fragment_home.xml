@@ -6,137 +6,150 @@
     android:background="#F4F4F4"
     android:orientation="vertical">
 
-    <LinearLayout
+    <View
+        android:background="@color/colorStatusBar"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/colorStatusBar" />
+        android:layout_height="25dp" />
 
-    <com.lx.android_commerce.weight.custom.DarkScrollView
-        android:id="@+id/fra_home_darkScrollView"
+    <RelativeLayout
+        android:layout_marginTop="25dp"
+        android:background="#F4F4F4"
         android:layout_width="match_parent"
-        android:scrollbars="none"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="150dp"
+            android:background="@color/colorStatusBar" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="8dp"
-                app:cardCornerRadius="15dp">
+        <com.lx.android_commerce.weight.custom.DarkScrollView
+            android:id="@+id/fra_home_darkScrollView"
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
 
-                <com.youth.banner.Banner
-                    android:id="@+id/fra_home_banner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </androidx.cardview.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginTop="215dp"
-                android:background="#fff">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/fra_home_rv_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="370dp"
-                android:background="#F9EBC6"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp">
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="15dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="每日热销排行榜"
-                        android:textColor="#42250C"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@mipmap/hot_lable" />
-                </LinearLayout>
+                    <com.youth.banner.Banner
+                        android:id="@+id/fra_home_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </androidx.cardview.widget.CardView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="210dp"
-                    android:padding="10dp">
+                    android:layout_height="160dp"
+                    android:layout_marginTop="215dp"
+                    android:background="#fff">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/fra_home_rv_hot"
+                        android:id="@+id/fra_home_rv_status"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#F5F5F5"
-                    android:gravity="center"
-                    android:text="晓晓精选，全场特惠 (ง •̀_•́)ง" />
                 <LinearLayout
-                    android:id="@+id/fra_home_ll_more"
-                    android:background="#fff"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-                        android:id="@+id/fra_home_smartRefresh"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="370dp"
+                    android:background="#F9EBC6"
+                    android:orientation="vertical">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="每日热销排行榜"
+                            android:textColor="#42250C"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@mipmap/hot_lable" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="210dp"
+                        android:padding="10dp">
+
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/fra_home_rv_more"
+                            android:id="@+id/fra_home_rv_hot"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
-                    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#F5F5F5"
+                        android:gravity="center"
+                        android:text="晓晓精选，全场特惠 (ง •̀_•́)ง" />
+                    <LinearLayout
+                        android:id="@+id/fra_home_ll_more"
+                        android:background="#fff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                            android:id="@+id/fra_home_smartRefresh"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/fra_home_rv_more"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
-    </com.lx.android_commerce.weight.custom.DarkScrollView>
+            </RelativeLayout>
+        </com.lx.android_commerce.weight.custom.DarkScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/colorStatusBar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorStatusBar">
 
-        <EditText
-            android:id="@+id/fra_home_edit_query"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="6"
-            android:background="@drawable/shape_edit_query"
-            android:drawableLeft="@drawable/ic_action_query"
-            android:drawablePadding="10dp"
-            android:hint="棉袄 男"
-            android:paddingLeft="10dp" />
+            <EditText
+                android:id="@+id/fra_home_edit_query"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="6"
+                android:background="@drawable/shape_edit_query"
+                android:drawableLeft="@drawable/ic_action_query"
+                android:drawablePadding="10dp"
+                android:hint="棉袄 男"
+                android:paddingLeft="10dp" />
 
-        <ImageView
-            android:id="@+id/fra_home_iv_message"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.5"
-            android:src="@mipmap/message_white" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/fra_home_iv_message"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="0.5"
+                android:src="@mipmap/message_white" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

@@ -19,10 +19,17 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
-        <activity android:name=".mvp.view.activity.GoodDetailActivity" android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.DarkPayActivity"
+            android:theme="@style/PersonTheme" />
+        <activity
+            android:name=".mvp.view.activity.GoodDetailActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/PersonTheme" />
         <activity
             android:name=".ui.DetailActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/PersonTheme" />
         <activity
             android:name=".ui.MainActivity"
             android:launchMode="singleTask"
@@ -36,9 +43,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- 屏幕适配 -->
+        </activity> <!-- 屏幕适配 -->
         <meta-data
             android:name="design_width"
             android:value="1080" />

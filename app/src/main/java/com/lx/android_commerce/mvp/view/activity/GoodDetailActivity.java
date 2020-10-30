@@ -125,7 +125,7 @@ public class GoodDetailActivity extends BaseActivity<GoodDetailPresenter> implem
         });
 
         actGoodDetailBanner.setBannerStyle(BannerConfig.NUM_INDICATOR);
-        actGoodDetailBanner.isAutoPlay(false);
+        actGoodDetailBanner.setDelayTime(2000);
         actGoodDetailBanner.start();
     }
 

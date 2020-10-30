@@ -1,10 +1,18 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <!-- 半沉浸式布局-->
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
+        <item name="android:windowTranslucentNavigation" tools:ignore="NewApi">true</item>
         <item name="colorPrimary">@color/colorStatusBar</item>
         <item name="colorPrimaryDark">@color/colorStatusBar</item>
         <item name="colorAccent">@color/colorStatusBar</item>
+    </style>
+
+    <style name="PersonTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 半沉浸式布局-->
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
     </style>
 
     <style name="SplashPage" parent="Theme.AppCompat.Light.NoActionBar">

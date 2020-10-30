@@ -2,8 +2,11 @@ package com.lx.android_commerce.mvp.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.lx.android_commerce.MyApp;
 import com.lx.android_commerce.R;
+import com.lx.android_commerce.ui.DarkPayActivity;
 import com.lx.android_commerce.weight.adapter.ShopCarAdapter;
 import com.lx.android_commerce.weight.entity.GoodDetailEntity;
 import com.lx.android_commerce.weight.entity.GreenShop;
@@ -41,6 +45,7 @@ public
  *@params : 
  *@description:
  */
+@SuppressLint("HandlerLeak")
 class ShopCarFragment extends BaseFragment {
 
     @BindView(R.id.fra_shop_car_set)
@@ -57,9 +62,15 @@ class ShopCarFragment extends BaseFragment {
     TextView fraShopTvAllMoney;
     @BindView(R.id.fra_shop_car_tv_all)
     TextView fraShopCarTvAll;
+    @BindView(R.id.fra_shop_tv_all_text)
+    TextView fraShopTvAllText;
+    @BindView(R.id.fra_shop_car_btn_clear)
+    Button fraShopCarBtnClear;
 
     private ShopCarAdapter mShopCarAdapter;
     private List<GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean> mShopCarGoodsList = new ArrayList<>();
+
+    private double allMoney = 0.0;
 
     @Override
     public int bindLayout() {
@@ -134,11 +145,19 @@ class ShopCarFragment extends BaseFragment {
         new AlertDialog.Builder(Objects.requireNonNull(getContext()))
                 .setTitle("提示")
                 .setMessage("您是否要删除该商品")
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.tongkumao)
                 .setNegativeButton("取消", null)
-                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                .setPositiveButton("确认", (dialog, which) -> {
+                    if (mShopCarGoodsList.size() <= 1) {
+                        mShopCarGoodsList.clear();
+                        mShopCarAdapter.notifyDataSetChanged();
+                        MyApp.getInstance().getDaoSession().getGreenShopDao().deleteAll();
+                        //刷新页面状态
+                        fraShopCarRv.setVisibility(View.GONE);
+                        fraShopCarTvLoading.setVisibility(View.VISIBLE);
+                        fraShopCarTvAll.setText("全选");
+                        fraShopCarCheckAll.setChecked(false);
+                    } else {
                         mShopCarGoodsList.remove(position);
                         mShopCarAdapter.notifyItemRemoved(position);
                         //删除数据库中对应的数据
@@ -150,7 +169,7 @@ class ShopCarFragment extends BaseFragment {
     //计算商品总价
     @SuppressLint("SetTextI18n")
     private void countAllMoney() {
-        double allMoney = 0;
+        allMoney = 0;
         for (GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean : mShopCarGoodsList) {
             if (goodsDetailsBean.isChecked()) {
                 double singlePrice = (double) goodsDetailsBean.getMin_group_price() * goodsDetailsBean.getShopCarNum();
@@ -176,6 +195,7 @@ class ShopCarFragment extends BaseFragment {
             for (int i = greenShops.size() - 1; i >= 0; i--) {
                 GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean = new Gson().fromJson(greenShops.get(i).getShop(), GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean.class);
                 //将商品ID存入集合
+                goodsDetailsBean.setShowRemove(false);
                 goodsDetailsBean.setGreenProductId(greenShops.get(i).getId());
                 mShopCarGoodsList.add(goodsDetailsBean);
             }
@@ -189,36 +209,35 @@ class ShopCarFragment extends BaseFragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Subscribe
     public void eventReceive(String msg) {
         if (msg.equals("It's time to refresh")) {
-            if (mShopCarAdapter == null) {
-                LogUtil.getInstance().logI("mShopCarAdapter == null");
-                mShopCarAdapter = new ShopCarAdapter(R.layout.item_shop_car_layout, mShopCarGoodsList);
-                fraShopCarRv.setAdapter(mShopCarAdapter);
-                fraShopCarRv.setLayoutManager(new LinearLayoutManager(getContext()));
+            readLocalData();
+        } else if (msg.equals("pay result is success")) {
+            //TODO 将其添加到待收货列表中
+            List<GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean> deliveryList = new ArrayList<>();
+
+            //删除购物车中对应的商品
+            for (int i = 0; i < mShopCarGoodsList.size(); i++) {
+                if(mShopCarGoodsList.get(i).isChecked()) {
+                    //删除数据库中对应的商品
+                    MyApp.getInstance().getDaoSession().getGreenShopDao().deleteByKey(mShopCarGoodsList.get(i).getGreenProductId());
+                }
             }
             readLocalData();
+            fraShopTvAllMoney.setText("¥" + 0.00 + "元");
+            fraShopCarCheckAll.setChecked(false);
+            fraShopCarTvAll.setText("全选");
         }
     }
 
-    @OnClick({R.id.fra_shop_car_set, R.id.fra_shop_car_check_all})
+    @SuppressLint("SetTextI18n")
+    @OnClick({R.id.fra_shop_car_set, R.id.fra_shop_car_check_all, R.id.fra_shop_car_btn_clear})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fra_shop_car_set:
-                if (fraShopCarSet.getText().equals("管理")) {
-                    fraShopCarSet.setText("取消");
-                    //显示item中删除按钮
-                    for (GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean : mShopCarGoodsList) {
-                        goodsDetailsBean.setShowRemove(true);
-                    }
-                } else {
-                    fraShopCarSet.setText("管理");
-                    for (GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean : mShopCarGoodsList) {
-                        goodsDetailsBean.setShowRemove(false);
-                    }
-                }
-                mShopCarAdapter.notifyDataSetChanged();
+                changePageState();
                 break;
             case R.id.fra_shop_car_check_all:
                 //全选
@@ -227,9 +246,95 @@ class ShopCarFragment extends BaseFragment {
                 }
                 mShopCarAdapter.notifyDataSetChanged();
                 countAllMoney();
-                if (fraShopCarCheckAll.isChecked()) fraShopCarTvAll.setText("全不选"); else fraShopCarTvAll.setText("全选");
+                if (fraShopCarCheckAll.isChecked()) {
+                    fraShopCarTvAll.setText("全不选");
+                    if (fraShopCarSet.getText().equals("取消")) {
+                        fraShopCarBtnClear.setEnabled(true);
+                        fraShopCarBtnClear.setBackgroundColor(Color.parseColor("#FF0000"));
+                        fraShopCarBtnClear.setText("清空小车");
+                    }
+                } else if (fraShopCarTvAll.getText().equals("全不选")) {
+                    fraShopCarTvAll.setText("全选");
+                    if(fraShopCarSet.getText().equals("取消")) {
+                        fraShopCarBtnClear.setBackgroundColor(Color.parseColor("#8A0F0F"));
+                        fraShopCarBtnClear.setEnabled(false);
+                    }
+                }
+                break;
+            case R.id.fra_shop_car_btn_clear:
+                if (fraShopCarBtnClear.getText().equals("清空小车") && mShopCarGoodsList.size() > 0) {
+                    new AlertDialog.Builder(Objects.requireNonNull(getContext()))
+                            .setTitle("警告")
+                            .setMessage("您是否要删除全部商品")
+                            .setIcon(R.mipmap.tongkumao)
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确认", (dialog, which) -> {
+                                mShopCarGoodsList.clear();
+                                mShopCarAdapter.notifyDataSetChanged();
+                                //删除数据库中对应的数据
+                                MyApp.getInstance().getDaoSession().getGreenShopDao().deleteAll();
+                                //刷新页面状态
+                                fraShopTvAllMoney.setText("¥0.00元");
+                                fraShopCarRv.setVisibility(View.GONE);
+                                fraShopCarTvLoading.setVisibility(View.VISIBLE);
+                                fraShopCarTvAll.setText("全选");
+                                fraShopCarCheckAll.setChecked(false);
+                            }).show();
+                } else {
+                    boolean flag = false;
+                    for (GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean : mShopCarGoodsList) {
+                        if (goodsDetailsBean.isChecked()) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (!flag) showToast("至少选中一个商品哦");
+                    else {
+                        //进入支付宝支付
+                        Intent intent = new Intent(getContext(), DarkPayActivity.class);
+                        String s = doubleToString(allMoney);
+                        double price = Double.parseDouble(s);
+                        intent.putExtra("allMoney", price);
+                        startActivity(intent);
+                    }
+
+                }
                 break;
         }
+    }
+
+    private void changePageState() {
+        if (fraShopCarSet.getText().equals("管理")) {
+            fraShopCarSet.setText("取消");
+            fraShopTvAllText.setVisibility(View.GONE);
+            fraShopTvAllMoney.setVisibility(View.GONE);
+
+            if (fraShopCarCheckAll.isChecked()) {
+                fraShopCarBtnClear.setBackgroundColor(Color.parseColor("#FF0000"));
+                fraShopCarBtnClear.setText("清空小车");
+                fraShopCarBtnClear.setEnabled(true);
+            } else {
+                fraShopCarBtnClear.setEnabled(false);
+                fraShopCarBtnClear.setBackgroundColor(Color.parseColor("#8A0F0F"));
+                fraShopCarBtnClear.setText("清空小车");
+            }
+
+            //显示item中删除按钮
+            for (GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean : mShopCarGoodsList) {
+                goodsDetailsBean.setShowRemove(true);
+            }
+        } else {
+            fraShopCarBtnClear.setEnabled(true);
+            fraShopCarSet.setText("管理");
+            fraShopTvAllText.setVisibility(View.VISIBLE);
+            fraShopTvAllMoney.setVisibility(View.VISIBLE);
+            fraShopCarBtnClear.setText("结算");
+            fraShopCarBtnClear.setBackgroundResource(R.drawable.shape_shop_car_btn_clear);
+            for (GoodDetailEntity.EntityBean.GoodsDetailResponseBean.GoodsDetailsBean goodsDetailsBean : mShopCarGoodsList) {
+                goodsDetailsBean.setShowRemove(false);
+            }
+        }
+        mShopCarAdapter.notifyDataSetChanged();
     }
 
     @Override

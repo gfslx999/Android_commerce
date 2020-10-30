@@ -1,11 +1,11 @@
 package com.lx.android_commerce.mvp.view.fragment;
 
-import android.widget.TextView;
-
 import com.lx.android_commerce.R;
 import com.lx.lib_core.mvp.view.BaseFragment;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public
 /**
@@ -16,6 +16,9 @@ public
  */
 class PersonFragment extends BaseFragment {
 
+    @BindView(R.id.fra_person_ll_delivery)
+    AutoLinearLayout fraPersonLlDelivery;
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_person;
@@ -23,5 +26,10 @@ class PersonFragment extends BaseFragment {
 
     @Override
     public void initView() {
+    }
+
+    @OnClick(R.id.fra_person_ll_delivery)
+    public void onViewClicked() {
+
     }
 }
